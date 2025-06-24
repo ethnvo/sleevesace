@@ -1,12 +1,33 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import { useState, useEffect } from "react";
+import LoginForm from "./components/login";
+import MainApp from "./components/mainpage";
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  return <div>Sleeve's Ace</div>;
+  useEffect(() => {
+    const stored = localStorage.getItem("loggedIn");
+    if (stored === "true") setIsLoggedIn(true);
+  }, []);
+
+  const handleLogin = () => {
+    localStorage.setItem("loggedIn", "true");
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedIn");
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <MainApp onLogout={handleLogout} />
+      ) : (
+        <LoginForm onLogin={handleLogin} />
+      )}
+    </div>
+  );
 }
-
-export default App;
