@@ -1,4 +1,4 @@
-# Sleeve's Ace ♠️
+# Sleeve's Ace (WIP) ♠️
 
 An AI-powered poker assistant that records your screen and analyzes your hands — just like Chess.com for poker.
 
